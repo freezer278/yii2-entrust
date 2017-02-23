@@ -1,0 +1,22 @@
+{
+    "name": "vmorozov/yii2-entrust",
+    "description": "Roles and permissions system like zizaco/entrust in laravel for yii2.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","users","module","rbac", "roles", "permissions"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Vladimir Morozov",
+            "email": "freezer278@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "vmorozov\\entrust\\": ""
+        }
+    }
+}
