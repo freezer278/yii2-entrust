@@ -13,18 +13,10 @@ class m170223_121045_create_entrust_tables extends Migration
     /**
      * @inheritdoc
      */
-    public function __construct()
-    {
-        parent::construct;
-        $this->usersTable = app\models\User::tableName();
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function init()
     {
         $this->db = app\models\User::getDb();
+        $this->usersTable = app\models\User::tableName();
         parent::init();
     }
 
