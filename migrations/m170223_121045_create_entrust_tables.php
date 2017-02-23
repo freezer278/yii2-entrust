@@ -77,7 +77,7 @@ class m170223_121045_create_entrust_tables extends Migration
         );
         // add foreign key for table `role_user`
         $this->addForeignKey(
-            'fk-role_user-role_id',
+            'fk-role_user-user_id',
             'role_user',
             'user_id',
             $this->usersTable,
@@ -100,7 +100,7 @@ class m170223_121045_create_entrust_tables extends Migration
         );
         // add foreign key for table `permission_user`
         $this->addForeignKey(
-            'fk-permission_user-role_id',
+            'fk-permission_user-user_id',
             'permission_user',
             'user_id',
             $this->usersTable,
