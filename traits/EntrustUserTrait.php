@@ -1,9 +1,12 @@
 <?php
 namespace vmorozov\entrust\traits;
 
-use vmorozov\entrust\models\Permission;
-use vmorozov\entrust\models\Role;
-
+/**
+ * Trait to make getting access to role system in User model easier.
+ *
+ * Class EntrustUserTrait
+ * @package vmorozov\entrust\traits
+ */
 trait EntrustUserTrait
 {
     /**
@@ -14,6 +17,16 @@ trait EntrustUserTrait
     {
         return $this->hasMany(Role::className(), ['id' => 'role_id'])
             ->viaTable('role_user', ['user_id' => 'id']);
+    }
+
+    /**
+     * Get Role of user.
+     *
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->roles()->one();
     }
 
     /**
