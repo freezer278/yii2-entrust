@@ -6,7 +6,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `posts`.
  */
-class m170221_153727_create_entrusts_tables extends Migration
+class m170221_153727_create_entrust_tables extends Migration
 {
     /**
      * Table of User model to use it in relations.
