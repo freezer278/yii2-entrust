@@ -3,6 +3,7 @@
 namespace vmorozov\entrust\models;
 
 use Yii;
+use app\models\User;
 
 /**
  * This is the model class for table "roles".
@@ -46,5 +47,27 @@ class Role extends \yii\db\ActiveRecord
             'display_name' => 'Display Name',
             'description' => 'Description',
         ];
+    }
+
+    /**
+     * Get relation to permissions.
+     *
+     * @return mixed
+     */
+    public function permissions()
+    {
+        return $this->hasMany(Permission::className(), ['id' => 'permission_id'])
+            ->viaTable('permission_role', ['role_id' => 'id']);
+    }
+
+    /**
+     * Get relation to users.
+     *
+     * @return mixed
+     */
+    public function users()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])
+            ->viaTable('role_user', ['role_id' => 'id']);
     }
 }
