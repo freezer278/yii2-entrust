@@ -1,6 +1,11 @@
 # yii2-entrust
 Roles and permissions system like zizaco/entrust in Laravel for Yii2.
 
+#####IMPORTANT!
+#####Before installing this plugin you should have fully configured User model to work with database.  
+#####And you should have table with users with any name attached to User model in your database.
+#####In the other case you will get the error while running plugin migration. 
+
 ##Installation
 * Install with Composer:  
  `composer require vmorozov/tii2-entrust dev-master`
