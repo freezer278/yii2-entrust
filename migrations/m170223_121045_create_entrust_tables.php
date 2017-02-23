@@ -23,7 +23,7 @@ class m170223_121045_create_entrust_tables extends Migration
     /**
      * @inheritdoc
      */
-    public function up()
+    public function safeUp()
     {
         $this->createTable('roles', [
             'id' => $this->primaryKey(),
@@ -91,7 +91,7 @@ class m170223_121045_create_entrust_tables extends Migration
         ]);
         // add foreign key for table `permission_user`
         $this->addForeignKey(
-            'fk-role_user-permission_id',
+            'fk-permission_user-permission_id',
             'permission_user',
             'permission_id',
             'permissions',
@@ -100,7 +100,7 @@ class m170223_121045_create_entrust_tables extends Migration
         );
         // add foreign key for table `permission_user`
         $this->addForeignKey(
-            'fk-role_user-role_id',
+            'fk-permission_user-role_id',
             'permission_user',
             'user_id',
             $this->usersTable,
@@ -114,7 +114,7 @@ class m170223_121045_create_entrust_tables extends Migration
     /**
      * @inheritdoc
      */
-    public function down()
+    public function safeDown()
     {
         $this->dropForeignKey(
             'fk-permission_role-role_id',
