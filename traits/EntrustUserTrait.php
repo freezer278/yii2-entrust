@@ -1,6 +1,7 @@
 <?php
 namespace vmorozov\entrust\traits;
 
+use vmorozov\entrust\Entrust;
 use vmorozov\entrust\models\Role;
 use vmorozov\entrust\models\Permission;
 
