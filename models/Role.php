@@ -54,7 +54,7 @@ class Role extends \yii\db\ActiveRecord
      *
      * @return mixed
      */
-    public function permissions()
+    public function getPermissions()
     {
         return $this->hasMany(Permission::className(), ['id' => 'permission_id'])
             ->viaTable('permission_role', ['role_id' => 'id']);
@@ -65,7 +65,7 @@ class Role extends \yii\db\ActiveRecord
      *
      * @return mixed
      */
-    public function users()
+    public function getUsers()
     {
         return $this->hasMany(User::className(), ['id' => 'user_id'])
             ->viaTable('role_user', ['role_id' => 'id']);

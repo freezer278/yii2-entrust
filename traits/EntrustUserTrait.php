@@ -1,7 +1,6 @@
 <?php
 namespace vmorozov\entrust\traits;
 
-use vmorozov\entrust\Entrust;
 use vmorozov\entrust\models\Role;
 use vmorozov\entrust\models\Permission;
 
@@ -58,7 +57,7 @@ trait EntrustUserTrait
     }
 
     /**
-     * Assign given role to this user.
+     * Assign given role to this user. Adds permissions of new role to user.
      * If this user already has role, unlinks it before assigning a new one.
      *
      * @param Role $role
@@ -66,9 +65,35 @@ trait EntrustUserTrait
     public function assignRole(Role $role)
     {
         if ($this->role() != null)
+        {
+            $this->detachRolePermissions();
             $this->unlink('roles', $this->role(), true);
+        }
 
         $this->link('roles', $role);
+        $this->attachRolePermissions();
+    }
+
+    /**
+     * Attach all permissions of current role to user.
+     */
+    private function attachRolePermissions()
+    {
+        foreach ($this->role()->permissions as $permission)
+        {
+            $this->attachPermission($permission);
+        }
+    }
+
+    /**
+     * Remove permissions of current role from user.
+     */
+    private function detachRolePermissions()
+    {
+        foreach ($this->role()->permissions as $permission)
+        {
+            $this->detachPermission($permission);
+        }
     }
 
     /**
