@@ -2,8 +2,8 @@
 
 namespace vmorozov\entrust\models;
 
-use Yii;
-use app\models\User;
+use \Yii;
+use \app\models\User;
 
 /**
  * This is the model class for table "roles".
