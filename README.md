@@ -65,6 +65,10 @@ $adminRole->detachPermission('create_post');
 // remove permission from role with permission object
 $adminRole->detachPermission($create_post_permission);
 ```
+####Assign Role To User
+```php
+$user->assignRole($adminRole); // $adminRole must be a Role object
+```
 ####Assign Permissions Directly To User
 ```php
 // add permission to user with permission name string
