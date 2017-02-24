@@ -70,4 +70,31 @@ class Role extends \yii\db\ActiveRecord
         return $this->hasMany(User::className(), ['id' => 'user_id'])
             ->viaTable('role_user', ['role_id' => 'id']);
     }
+
+    /**
+     * Add given permission to role.
+     *
+     * @param string|Permission $permission
+     */
+    public function attachPermission($permission)
+    {
+        if (is_string($permission))
+            $permission = Permission::findOne(['name' => $permission]);
+
+        if (in_array($permission, $this->permissions))
+            return;
+
+        $this->link('permissions', $permission);
+    }
+
+    /**
+     * @param string|Permission $permission
+     */
+    public function detachPermission($permission)
+    {
+        if (is_string($permission))
+            $permission = Permission::findOne(['name' => $permission]);
+
+        $this->unlink('permissions', $permission, true);
+    }
 }
