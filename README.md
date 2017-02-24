@@ -2,9 +2,14 @@
 Roles and permissions system like zizaco/entrust in Laravel for Yii2.  
 
 ##Description
-This plugin helps you to manage users roles and permissions very fast and easily.  
+This plugin helps you to manage users roles and permissions very fast and easily.    
+####For complex roles systems  
 **Roles** are presets of permissions. So it means that you have **_independent_** control of each user permissions.  
-So after assigning role to some user will assign all permissions assigned to role to this user.
+So after assigning role to some user will assign all permissions assigned to role to this user.  
+You can check permission of user with [hasPermission()](#check-if-user-has-permission)
+####For very simple roles systems
+You can use only roles to check if user has rights for the action with [hasRole()](#check-if-user-has-role) method
+
 
 
 ##Installation
@@ -13,13 +18,13 @@ So after assigning role to some user will assign all permissions assigned to rol
 #####And you should have table with users with any name attached to User model in your database.
 #####In the other case you will get the error while running plugin migration. 
 
-* Install with Composer:  
+1. **Install with Composer:**  
  `composer require vmorozov/tii2-entrust dev-master`
  
-* Run migrations to create rbac tables  
+1. **Run migrations to create rbac tables**  
  `php yii migrate/up --migrationPath=@vendor/vmorozov/yii2-entrust/migrations`
  
-* Put given code to User model:
+1. **Put given code to User model:**
 ```php
 use vmorozov\entrust\traits\EntrustUserTrait;  
 
@@ -86,6 +91,12 @@ $user->detachPermission($create_post_permission);
 ```php
 $user->hasPermission('create-post');
 // returns true if user has permission with given name
+```
+####Check if user has role
+Commonly this method is used in simple roles systems where there are no permissions, only roles.
+```php
+$user->hasRole('admin');
+// returns true if user has role with given name
 ```
 ####Get Permissions Of User
 ```php
