@@ -56,7 +56,7 @@ class EntrustRule extends \yii\filters\AccessRule
                 if (!$user->getIsGuest())
                     return true;
             }
-            elseif ($user->hasRole($role))
+            elseif ($user->identity->hasRole($role))
                 return true;
         }
 
@@ -73,7 +73,7 @@ class EntrustRule extends \yii\filters\AccessRule
 
         foreach ($this->permissions as $permission)
         {
-            if ($user->hasPermission($permission))
+            if ($user->identity->hasPermission($permission))
                 return true;
         }
 

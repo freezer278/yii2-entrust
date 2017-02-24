@@ -2,6 +2,9 @@
 namespace vmorozov\entrust\accessFilters;
 
 use \Yii;
+use yii\web\User;
+use yii\di\Instance;
+use yii\web\ForbiddenHttpException;
 
 /**
  * EntrustControl provides simple access control based on a set of rules.
@@ -43,30 +46,6 @@ class EntrustControl extends \yii\filters\AccessControl
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
-    {
-        $user = $this->user;
-        $request = Yii::$app->getRequest();
-        /* @var $rule EntrustRule */
-        foreach ($this->rules as $rule) {
-            if ($allow = $rule->allows($action, $user, $request)) {
-                return true;
-            } elseif ($allow === false) {
-                if (isset($rule->denyCallback)) {
-                    call_user_func($rule->denyCallback, $rule, $action);
-                } elseif ($this->denyCallback !== null) {
-                    call_user_func($this->denyCallback, $rule, $action);
-                } else {
-                    $this->denyAccess($user);
-                }
-                return false;
-            }
-        }
-        if ($this->denyCallback !== null) {
-            call_user_func($this->denyCallback, null, $action);
-        } else {
-            $this->denyAccess($user);
-        }
-        return false;
-    }
+    public $ruleConfig = ['class' => '\vmorozov\entrust\accessFilters\EntrustRule'];
+
 }
