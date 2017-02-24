@@ -33,6 +33,16 @@ trait EntrustUserTrait
     }
 
     /**
+     * Checks if user has role with given name.
+     *
+     * @param string $roleName
+     * @return bool
+     */
+    public function hasRole(string $roleName)
+    {
+        return $this->role()->name == $roleName;
+    }
+    /**
      * Many-to-Many relations with Permission.
      *
      */
